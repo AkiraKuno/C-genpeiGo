@@ -104,14 +104,14 @@ void disp_endgame(void) {
     printf("\n");
 
     if (black > white){
-        printf("      !!YOU WIN!!");
+        printf("      !!YOU WIN!!\n");
 
     }
     else if (white > black){
-        printf("      !!YOU LOST!!");
+        printf("      !!YOU LOST!!\n");
     }
     else {
-        printf("        !!DRAW!!");
+        printf("        !!DRAW!!\n");
     }
 }
 
@@ -125,6 +125,7 @@ int check_square(int i, int j, int stone1, int stone2) {
         return -1;
     }
 }
+
 // check_boardは座標i1, j1を軸に、反転可能な石の数を返す
 int check_board(int i1, int j1, int stone) {
 
@@ -144,73 +145,97 @@ int check_board(int i1, int j1, int stone) {
 
     // left
     for (i2 = i1, j2 = (j1 - 01); j2 != 0xFFFFFFFF; j2--) {
-        count += check_square(i2, j2, stone1, stone2);
         if (check_square(i2, j2, stone1, stone2) == 0) {
             stonecount += count;
             break;
+        } else if (check_square(i2, j2, stone1, stone2) == -1){
+            break;
+        } else {
+            count += check_square(i2, j2, stone1, stone2);
         }
     }
     count = 0;
     // upper left
     for (i2 = (i1 - 01), j2 = (i1 - 01); i2 != 0xFFFFFFFF && j2 != 0xFFFFFFFF; i2--, j2--) {
-        count += check_square(i2, j2, stone1, stone2);
         if (check_square(i2, j2, stone1, stone2) == 0) {
             stonecount += count;
             break;
+        } else if (check_square(i2, j2, stone1, stone2) == -1){
+            break;
+        } else {
+            count += check_square(i2, j2, stone1, stone2);
         }
     }
     count = 0;
     // upper
     for (i2 = (i1 - 01), j2 = j1; i2 != 0xFFFFFFFF; i2--){
-        count += check_square(i2, j2, stone1, stone2);
         if (check_square(i2, j2, stone1, stone2) == 0) {
             stonecount += count;
             break;
+        } else if (check_square(i2, j2, stone1, stone2) == -1){
+            break;
+        } else {
+            count += check_square(i2, j2, stone1, stone2);
         }
     }
     count = 0;
     // upper right
-    for (i2 = (1 - 01), j2 = (j1 + 01) ; i2 != 0xFFFFFFFF && j2 != 010; i2--, j2++){
-        count += check_square(i2, j2, stone1, stone2);
+    for (i2 = (i1 - 01), j2 = (j1 + 01) ; i2 != 0xFFFFFFFF && j2 != 010; i2--, j2++){
         if (check_square(i2, j2, stone1, stone2) == 0) {
             stonecount += count;
             break;
+        } else if (check_square(i2, j2, stone1, stone2) == -1){
+            break;
+        } else {
+            count += check_square(i2, j2, stone1, stone2);
         }
     }
     count = 0;
     // right
     for (i2 = i1, j2 = (j1 + 01); j2 != 010; j2++){
-        count += check_square(i2, j2, stone1, stone2);
         if (check_square(i2, j2, stone1, stone2) == 0) {
             stonecount += count;
             break;
+        } else if (check_square(i2, j2, stone1, stone2) == -1){
+            break;
+        } else {
+            count += check_square(i2, j2, stone1, stone2);
         }
     }
     count = 0;
     // lower right
     for (i2 = (i1 + 01), j2 = (j1 + 01) ; i2 != 010 && j2 != 010; i2++, j2++){
-        count += check_square(i2, j2, stone1, stone2);
         if (check_square(i2, j2, stone1, stone2) == 0) {
             stonecount += count;
             break;
+        } else if (check_square(i2, j2, stone1, stone2) == -1){
+            break;
+        } else {
+            count += check_square(i2, j2, stone1, stone2);
         }
     }
     count = 0;
     // lower
     for(i2 = (i1 + 01), j2 = j1; i2 != 010; i2++){
-        count += check_square(i2, j2, stone1, stone2);
         if (check_square(i2, j2, stone1, stone2) == 0) {
             stonecount += count;
             break;
+        } else if (check_square(i2, j2, stone1, stone2) == -1){
+            break;
+        } else {
+            count += check_square(i2, j2, stone1, stone2);
         }
     }
     count = 0;
     // lower left
     for (i2 = (i1 + 01), j2 = (j1 - 01); i2 != 010 && j2 != 0xFFFFFFFF; i2++, j2--) {
-        count += check_square(i2, j2, stone1, stone2);
         if (check_square(i2, j2, stone1, stone2) == 0) {
             stonecount += count;
             break;
+        } else if (check_square(i2, j2, stone1, stone2) == -1){
+            break;
+        } else {
+            count += check_square(i2, j2, stone1, stone2);
         }
     }
     return stonecount;
