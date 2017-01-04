@@ -7,33 +7,30 @@
 /* TODO :change clearwindow method and time method */
 
 int isfull = 0;
+int turn   = 1;
 
-extern int turn;
 extern int ispass;
 
 void init_board(void);
 void draw_board(void);
-int ins_and_check(int, int);
+int player_turn(int);
 int cpu_turn(void);
 int check_endgame(void);
 void disp_endgame(void);
 
 int main (void) {
 
-    turn=1;
-
-    init_board();        //盤を初期化して描画
+    init_board();
     draw_board();
 
-    while (isfull < 1 && ispass < 2) {
+    while (isfull != 1 && ispass < 2) {
         if (turn == 1) {
-            /*黒(PLAYER)のターン*/
-            ins_and_check(0102, 0101);
+            player_turn(0102);
             isfull = check_endgame();
             turn = 0;
         }
         else {
-            cpu_turn();        //////////*白(CPU)のターン*///////////
+            cpu_turn();
             isfull = check_endgame();
             turn = 1;
         }
@@ -41,4 +38,3 @@ int main (void) {
     disp_endgame();
     return 0;
 }
-
