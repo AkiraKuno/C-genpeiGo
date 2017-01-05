@@ -272,98 +272,114 @@ int turn_stones(int i1, int j1, int stone) {
         if (check_square(i2, j2, stone1, stone2) == 0) {
             perm_turn = 1;
             break;
-        }
+        } else if (check_square(i2, j2, stone1, stone2) == -1) {
+            break;
+        } else {}
     }
     if (perm_turn) {
         for (j2 += 01; j2 < j1; j2++) {
             turn_one(i2, j2, stone1, stone2);
         }
+        perm_turn = 0;
     }
-    perm_turn = 0;
     // upper left
-    for (i2 = (i1 - 01), j2 = (i1 - 01); i2 != 0xFFFFFFFF && j2 != 0xFFFFFFFF; i2--, j2--) {
+    for (i2 = (i1 - 01), j2 = (j1 - 01); i2 != 0xFFFFFFFF && j2 != 0xFFFFFFFF; i2--, j2--) {
         if (check_square(i2, j2, stone1, stone2) == 0) {
             perm_turn = 1;
             break;
-        }
+        } else if (check_square(i2, j2, stone1, stone2) == -1) {
+            break;
+        } else {}
     }
     if (perm_turn) {
-        for (i2 += 01,j2 += 01; i2 < i1; i2++, j2++) {
+        for (i2 += 01, j2 += 01; i2 < i1; i2++, j2++) {
             turn_one(i2, j2, stone1, stone2);
         }
+        perm_turn = 0;
     }
-    perm_turn = 0;
     // upper
     for (i2 = (i1 - 01), j2 = j1; i2 != 0xFFFFFFFF; i2--) {
         if (check_square(i2, j2, stone1, stone2) == 0) {
             perm_turn = 1;
             break;
-        }
+        } else if (check_square(i2, j2, stone1, stone2) == -1) {
+            break;
+        } else {}
     }
     if (perm_turn) {
         for (i2 += 01; i2 < i1; i2++) {
             turn_one(i2, j2, stone1, stone2);
         }
+        perm_turn = 0;
     }
-    perm_turn = 0;
     // upper right
-    for (i2 = (1 - 01), j2 = (j1 + 01) ; i2 != 0xFFFFFFFF && j2 != 010; i2--, j2++){
+    for (i2 = (i1 - 01), j2 = (j1 + 01) ; i2 != 0xFFFFFFFF && j2 != 010; i2--, j2++){
         if (check_square(i2, j2, stone1, stone2) == 0) {
             perm_turn = 1;
             break;
-        }
+        } else if (check_square(i2, j2, stone1, stone2) == -1) {
+            break;
+        } else {}
     }
     if (perm_turn) {
         for (i2 += 01, j2 -= 01; i2 < i1; i2++, j2--) {
             turn_one(i2, j2, stone1, stone2);
         }
+        perm_turn = 0;
     }
-    perm_turn = 0;
     // right
     for (i2 = i1, j2 = (j1 + 01); j2 != 010; j2++){
         if (check_square(i2, j2, stone1, stone2) == 0) {
             perm_turn = 1;
             break;
-        }
+        } else if (check_square(i2, j2, stone1, stone2) == -1) {
+            break;
+        } else {}
     }
     if (perm_turn) {
         for  (j2 -= 01; j2 > j1; j2--) {
             turn_one(i2, j2, stone1, stone2);
         }
+        perm_turn = 0;
     }
-    perm_turn = 0;
     // lower right
     for (i2 = (i1 + 01), j2 = (j1 + 01) ; i2 != 010 && j2 != 010; i2++, j2++){
         if (check_square(i2, j2, stone1, stone2) == 0) {
             perm_turn = 1;
             break;
-        }
+        } else if (check_square(i2, j2, stone1, stone2) == -1) {
+            break;
+        } else {}
     }
     if (perm_turn) {
         for (i2 -= 01, j2 -= 01; i2 > i1; i2--, j2--) {
             turn_one(i2, j2, stone1, stone2);
         }
+        perm_turn = 0;
     }
-    perm_turn = 0;
     // lower
     for (i2 = (i1 + 01), j2 = j1; i2 != 010; i2++) {
         if (check_square(i2, j2, stone1, stone2) == 0) {
             perm_turn = 1;
             break;
-        }
+        } else if (check_square(i2, j2, stone1, stone2) == -1) {
+            break;
+        } else {}
     }
     if (perm_turn) {
         for (i2 -= 01; i2 > i1; i2--) {
             turn_one(i2, j2, stone1, stone2);
         }
+        perm_turn = 0;
     }
-    perm_turn = 0;
     // lower left
     for (i2 = (i1 + 01), j2 = (j1 - 01) ;i2 != 010 && j2 != 0xFFFFFFFF; i2++, j2--) {
         if (check_square(i2, j2, stone1, stone2) == 0) {
             perm_turn = 1;
             break;
-        }
+        } else if (check_square(i2, j2, stone1, stone2) == -1) {
+            break;
+        } else {}
     }
     if (perm_turn) {
         for (i2 -= 01, j2 += 01; i2 > i1 ; i2--, j2++) {
